@@ -3,7 +3,9 @@ import {
     body
 } from 'express-validator'
 import {
-    createPost
+    createPost,
+    getPosts,
+    getPostById
 } from '../controllers/post.js'
 import {
     upload
@@ -14,6 +16,14 @@ import {
 
 const router = express.Router()
 
+router.get(
+    '/post',
+    getPosts
+)
+router.get(
+    '/post/:id',
+    getPostById
+)
 router.post(
     '/post',
     upload.single('image'),
