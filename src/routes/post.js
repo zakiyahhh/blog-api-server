@@ -5,7 +5,9 @@ import {
 import {
     createPost,
     getPosts,
-    getPostById
+    getPostById,
+    updatePost,
+    deletePost
 } from '../controllers/post.js'
 import {
     upload
@@ -33,6 +35,22 @@ router.post(
     ],
     validationRequest,
     createPost
+)
+
+router.put(
+    '/post/:id',
+    upload.single('image'),
+    [
+        body('title').not().isEmpty().withMessage('Title is required'),
+        body('body').not().isEmpty().withMessage('Body is required')
+    ],
+    validationRequest,
+    updatePost
+)
+
+router.delete(
+    '/post/:id',
+    deletePost
 )
 
 export default router
