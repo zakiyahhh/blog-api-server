@@ -5,11 +5,13 @@ export const createPost = async (req, res) => {
         title,
         body
     } = req.body;
+    const image = req.file ? req.file.filename : null
 
     try {
         const post = new Post({
             title,
-            body
+            body,
+            image
         })
         const savePost = await post.save()
 
